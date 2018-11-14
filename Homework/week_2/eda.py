@@ -1,7 +1,15 @@
+#!/usr/bin/env python
+# Name: Timo Koster
+# Student number: 10815716
+
 import pandas as pd
 import csv
 import matplotlib.pyplot as plt
 import json
+
+"""
+Cleans up the csv file and writes the required info to a new file
+"""
 
 
 def check_csv(input):
@@ -16,10 +24,14 @@ def check_csv(input):
                 # Check country name
                 if type(line['Country']) != str or not any(c.isalpha() for c in line['Country']):
                     line['Country'] = 'Unknown Country'
+                else:
+                    line['Country'] = line['Country'].rstrip()
 
-                # Check region name
+                # Check region name and remove trailing whitespaces
                 if type(line['Region']) != str or not any(c.isalpha() for c in line['Region']):
                     line['Region'] = 'Unknown Region'
+                else:
+                    line['Region'] = line['Region'].rstrip()
 
                 # Replace comma's in pop. dens. with periods, convert to float,
                 # if impossible set to 0
@@ -50,6 +62,13 @@ def check_csv(input):
                                 inf_mor: line[inf_mor], gdp: line[gdp]}))
             in_csv.close()
             out_csv.close()
+    return
+
+
+"""
+Calculate mean, median, mode and standard deviation of GDP. Create a histogram
+of data.
+"""
 
 
 def gdp_calculation():
@@ -72,6 +91,12 @@ def gdp_calculation():
     return avg_gdp, gdp_median, gdp_mode, gdp_std
 
 
+"""
+Calculate five number summary of infant mortality, creates a boxplot of
+data
+"""
+
+
 def infmor_calculation():
     # Create new dataframe for just inf_mor, ignore 0 values
     df_infmor = df[inf_mor].loc[df[inf_mor] != 0]
@@ -92,14 +117,27 @@ def infmor_calculation():
     return L_fns
 
 
+"""
+Create a json file from data.
+"""
+
+
 def write_json(data_dict, output):
     with open(data_dict, newline='\n') as data:
         reader = csv.DictReader(data)
         file = open(output, 'w')
+        json_list = {}
         for line in reader:
-            json.dump(line, file)
-            file.write('\n')
+            json_list[line['Country']] = {
+                'Region': line['Region'],
+                'Pop. Density (per sq. mi.)': line[pop_dens],
+                'Infant mortality (per 1000 births)': line[inf_mor],
+                'GDP ($ per capita) dollars': line[gdp]
+            }
+        json.dump(json_list, file, indent=4)
+
     file.close()
+    data.close()
 
 
 if __name__ == "__main__":
