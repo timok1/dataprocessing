@@ -16,22 +16,22 @@ def check_csv(input):
     with open(input, newline='\n') as in_csv:
         with open('output.csv', 'w') as out_csv:
             reader = csv.DictReader(in_csv)
-            writer = csv.DictWriter(out_csv, fieldnames=(['Country', 'Region',
+            writer = csv.DictWriter(out_csv, fieldnames=([country, region,
                                     pop_dens, inf_mor, gdp]))
             writer.writeheader()
 
             for line in reader:
                 # Check country name
-                if type(line['Country']) != str or not any(c.isalpha() for c in line['Country']):
-                    line['Country'] = 'Unknown Country'
+                if type(line[country]) != str or not any(c.isalpha() for c in line[country]):
+                    line[country] = 'Unknown Country'
                 else:
-                    line['Country'] = line['Country'].rstrip()
+                    line[country] = line[country].rstrip()
 
                 # Check region name and remove trailing whitespaces
-                if type(line['Region']) != str or not any(c.isalpha() for c in line['Region']):
-                    line['Region'] = 'Unknown Region'
+                if type(line[region]) != str or not any(c.isalpha() for c in line[region]):
+                    line[region] = 'Unknown Region'
                 else:
-                    line['Region'] = line['Region'].rstrip()
+                    line[region] = line[region].rstrip()
 
                 # Replace comma's in pop. dens. with periods, convert to float,
                 # if impossible set to 0
@@ -57,8 +57,8 @@ def check_csv(input):
                     line[gdp] = 0
 
                 # Write info to new csv file line by line
-                (writer.writerow({'Country': line['Country'],
-                            'Region': line['Region'], pop_dens: line[pop_dens],
+                (writer.writerow({country: line[country],
+                            region: line[region], pop_dens: line[pop_dens],
                                 inf_mor: line[inf_mor], gdp: line[gdp]}))
             in_csv.close()
             out_csv.close()
@@ -128,20 +128,23 @@ def write_json(data_dict, output):
         file = open(output, 'w')
         json_list = {}
         for line in reader:
-            json_list[line['Country']] = {
-                'Region': line['Region'],
-                'Pop. Density (per sq. mi.)': line[pop_dens],
-                'Infant mortality (per 1000 births)': line[inf_mor],
-                'GDP ($ per capita) dollars': line[gdp]
+            json_list[line[country]] = {
+                region: line[region],
+                pop_dens: line[pop_dens],
+                inf_mor: line[inf_mor],
+                gdp: line[gdp]
             }
         json.dump(json_list, file, indent=4)
 
     file.close()
     data.close()
 
+    return
+
 
 if __name__ == "__main__":
-
+    country = 'Country'
+    region = 'Region'
     pop_dens = 'Pop. Density (per sq. mi.)'
     inf_mor = 'Infant mortality (per 1000 births)'
     gdp = 'GDP ($ per capita) dollars'
