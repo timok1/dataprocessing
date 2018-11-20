@@ -12,11 +12,14 @@ def write_json(input, output, id):
         for line in reader:
             child = {}
             for item in headers:
-                child[item] = line[item]
+                if item != id:
+                    child[item] = line[item]
             json_list[line[id]] = child
 
         json.dump(json_list, file_w, indent=2)
+    data.close()
+    file_w.close()
 
 
 if __name__ == "__main__":
-    write_json('WorldCupMatches.csv', 'converted_data.json', 'MatchID')
+    write_json('ice.csv', 'converted_data.json', 'DOY')

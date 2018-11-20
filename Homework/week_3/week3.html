@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- Timo Koster, 10815716 -->
+
+<html>
+  <head>
+    <title>Line Plot</title>
+  </head>
+  <script>
+    var fileName = "converted_data.json";
+    var txtFile = new XMLHttpRequest();
+    txtFile.onreadystatechange = function() {
+        if (txtFile.readyState === 4 && txtFile.status == 200) {
+            console.log(JSON.parse(txtFile.responseText));
+
+            var data = JSON.parse(txtFile.responseText);
+            var days = Object.keys(data);
+            var iceExtent = [];
+            var iceExtentTransform = [];
+            var daysTransform = [];
+
+            for (let i of days) {
+              iceExtent.push(data[i]['Average Extent']);
+              daysTransform.push(createTransform([0, 366], [0, 600])(i));
+            }
+
+            for (let i of iceExtent) {
+              iceExtentTransform.push(createTransform([0, 20], [0, 400])(i));
+            }
+
+            function draw() {
+              var canvas = document.getElementById('graph');
+              if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.beginPath();
+                ctx.moveTo(daysTransform[0], iceExtentTransform[0])
+                for (let i of days) {
+                  ctx.lineTo(daysTransform[i], iceExtentTransform[i])
+                }
+                ctx.stroke();
+              }
+            }
+            draw();
+
+        }
+    }
+    txtFile.open("GET", fileName);
+    txtFile.send();
+
+    function createTransform(domain, range){
+    	// domain is a two-element array of the data bounds [domain_min, domain_max]
+    	// range is a two-element array of the screen bounds [range_min, range_max]
+    	// this gives you two equations to solve:
+    	// range_min = alpha * domain_min + beta
+    	// range_max = alpha * domain_max + beta
+     		// a solution would be:
+
+      var domain_min = domain[0]
+      var domain_max = domain[1]
+      var range_min = range[0]
+      var range_max = range[1]
+
+      // formulas to calculate the alpha and the beta
+     	var alpha = (range_max - range_min) / (domain_max - domain_min)
+      var beta = range_max - alpha * domain_max
+
+      // returns the function for the linear transformation (y= a * x + b)
+      return function(x){
+        return alpha * x + beta;
+          }
+      }
+
+
+  </script>
+  <style type="text/css">
+      canvas { border: 1px solid grey; }
+  </style>
+  <body>
+    <h3>Average amount of north pole sea ice in km^2 by day of the year (1980-2017)</h3>
+    <canvas id="graph" width="600" height="400" border=1px ></canvas>
+  </body>
+</html>
