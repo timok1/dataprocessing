@@ -3,7 +3,7 @@
 
 <html>
   <head>
-    <title>Line Plot</title>
+    <title>Sea Ice Graph</title>
   </head>
   <script>
     var fileName = "converted_data.json";
@@ -17,30 +17,126 @@
             var iceExtent = [];
             var iceExtentTransform = [];
             var daysTransform = [];
+            var graphLinesArray = [];
+            var graphLinesArrayTransform = [];
+            var graphWidth = 700;
+            var graphHeight = 450;
+            var valueHeight = 20;
+            var totalDays = days.length;
+            var xOffset = 50
+            var yOffset = 40
+            var monthsJson =  {'Jan':31, 'Feb':28, 'Mar':31,'Apr':30,'May':31,'Jun':30,'Jul':31, 'Aug':31, 'Sep':30,'Oct':31,'Nov':30,'Dec':31};
+            var monthNames = Object.keys(monthsJson);
+            var cumulativeDays = 0;
+
+            for (let month of monthNames) {
+              cumulativeDays = cumulativeDays += monthsJson[month];
+              monthsJson[month] = createTransform([0, totalDays], [xOffset, graphWidth])(cumulativeDays);
+            }
+            console.log(monthsJson)
+
+
+            for (let i = 0; i <= valueHeight; i += 2) {
+              graphLinesArray.push(i);
+              graphLinesArrayTransform.push(createTransform([0, valueHeight], [yOffset, graphHeight])(i));
+            }
 
             for (let i of days) {
               iceExtent.push(data[i]['Average Extent']);
-              daysTransform.push(createTransform([0, 366], [0, 600])(i));
+              daysTransform.push(createTransform([0, totalDays], [xOffset, graphWidth])(i));
             }
 
             for (let i of iceExtent) {
-              iceExtentTransform.push(createTransform([0, 20], [0, 400])(i));
+              iceExtentTransform.push(createTransform([0, valueHeight], [yOffset, graphHeight])(i));
             }
+
+
 
             function draw() {
               var canvas = document.getElementById('graph');
               if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
 
-                ctx.beginPath();
-                ctx.moveTo(daysTransform[0], iceExtentTransform[0])
-                for (let i of days) {
-                  ctx.lineTo(daysTransform[i], iceExtentTransform[i])
+                function drawLine() {
+                  ctx.beginPath();
+                  ctx.lineWidth = 3;
+                  ctx.strokeStyle = '#0000FF'
+                  ctx.moveTo(daysTransform[0], canvas.height - iceExtentTransform[0])
+                  for (let i of days) {
+                    ctx.lineTo(daysTransform[i], canvas.height - iceExtentTransform[i])
+                  }
+                  ctx.stroke();
                 }
-                ctx.stroke();
+
+                function drawGraphEdges() {
+                  ctx.beginPath();
+                  ctx.lineWidth = 2;
+                  ctx.strokeStyle = '#808080'
+                  ctx.moveTo(xOffset, 0);
+                  ctx.lineTo(xOffset, canvas.height - yOffset);
+                  ctx.lineTo(canvas.width, canvas.height - yOffset);
+                  ctx.lineTo(canvas.width, 0);
+                  ctx.lineTo(xOffset, 0);
+                  ctx.stroke();
+                }
+
+                function yTicks() {}
+                  ctx.beginPath();
+                  ctx.lineWidth = 1;
+                  ctx.strokeStyle = '#808080'
+                  ctx.font = "11px Arial";
+                  var i = 0;
+                  for (let line of graphLinesArrayTransform) {
+                    ctx.moveTo(xOffset, canvas.height - line);
+                    ctx.lineTo(canvas.width, canvas.height - line);
+                    ctx.fillText(graphLinesArray[i], xOffset - 20, canvas.height - line + 8);
+                    i++;
+                  }
+
+                  ctx.stroke();
+                }
+
+                function yLabel() {
+                  ctx.font = "15px Arial";
+                  ctx.save();
+                  ctx.translate(canvas.width, 0);
+                  ctx.rotate(1.5*Math.PI);
+                  ctx.textAlign = "right";
+                  ctx.fillText('Area of sea ice (million km\u00B2)', -100, -canvas.width + 15);
+                  ctx.stroke();
+                  ctx.restore();
+                }
+
+                function xLabel() {
+                  ctx.font = "15px Arial";
+                  ctx.fillText('Month', canvas.width/2, canvas.height);
+                }
+
+                function xTicks() {
+                  var tickLocX = xOffset;
+                  var tickLocY = canvas.height - yOffset;
+                  ctx.lineWidth = 1;
+                  ctx.strokeStyle = '#808080';
+                  ctx.font = "12px Arial";
+
+                  for (let month of monthNames) {
+                    ctx.fillText(month + ' 1', tickLocX - 10, tickLocY + 13);
+                    ctx.moveTo(tickLocX, tickLocY);
+                    ctx.lineTo(tickLocX, 0);
+                    tickLocX = monthsJson[month]
+                  }
+                  ctx.stroke();
+                }
+
+                yTicks();
+                drawGraphEdges();
+                yLabel();
+                xLabel();
+                xTicks();
+                drawLine();
               }
-            }
-            draw();
+
+              draw();
 
         }
     }
@@ -72,11 +168,8 @@
 
 
   </script>
-  <style type="text/css">
-      canvas { border: 1px solid grey; }
-  </style>
   <body>
-    <h3>Average amount of north pole sea ice in km^2 by day of the year (1980-2017)</h3>
-    <canvas id="graph" width="600" height="400" border=1px ></canvas>
+    <h3>Average amount of sea ice in the northern hemisphere by day of the year (1981-2010)</h3>
+    <canvas id="graph" width="700" height="450" border=1px ></canvas>
   </body>
 </html>
