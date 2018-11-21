@@ -21,26 +21,27 @@
             var graphLinesArray = [];
             var graphLinesArrayTransform = [];
             var graphWidth = 700;
-            var graphHeight = 450;
+            var graphHeight = 500;
             var valueHeight = 20;
             var totalDays = days.length;
-            var xOffset = 50
-            var yOffset = 40
+            var xOffset = 50;
+            var yOffsetBottom = 40;
+            var yOffsetTop = 35;
 
             for (let i = 0; i <= valueHeight; i += 2) {
               graphLinesArray.push(i);
-              graphLinesArrayTransform.push(createTransform([0, valueHeight], [yOffset, graphHeight])(i));
+              graphLinesArrayTransform.push(createTransform([0, valueHeight], [yOffsetBottom, graphHeight - yOffsetTop])(i));
             }
 
-            // Transform y-values
+            // Transform x-values
             for (let i of days) {
               iceExtent.push(data[i]['Average Extent']);
               daysTransform.push(createTransform([0, totalDays], [xOffset, graphWidth])(i));
             }
 
-            // Transform x-values
+            // Transform y-values
             for (let i of iceExtent) {
-              iceExtentTransform.push(createTransform([0, valueHeight], [yOffset, graphHeight])(i));
+              iceExtentTransform.push(createTransform([0, valueHeight], [yOffsetBottom, graphHeight - yOffsetTop])(i));
             }
 
             // Draw graph
@@ -66,11 +67,11 @@
                   ctx.beginPath();
                   ctx.lineWidth = 2;
                   ctx.strokeStyle = '#808080'
-                  ctx.moveTo(xOffset, 0);
-                  ctx.lineTo(xOffset, canvas.height - yOffset);
-                  ctx.lineTo(canvas.width, canvas.height - yOffset);
-                  ctx.lineTo(canvas.width, 0);
-                  ctx.lineTo(xOffset, 0);
+                  ctx.moveTo(xOffset, yOffsetTop);
+                  ctx.lineTo(xOffset, canvas.height - yOffsetBottom);
+                  ctx.lineTo(canvas.width, canvas.height - yOffsetBottom);
+                  ctx.lineTo(canvas.width, yOffsetTop);
+                  ctx.lineTo(xOffset, yOffsetTop);
                   ctx.stroke();
                 }
 
@@ -93,27 +94,32 @@
 
                 // Draw the (rotated) label for the y-axis
                 function yLabel() {
-                  ctx.font = "15px Arial";
+                  ctx.font = "bold 15px Arial";
                   ctx.save();
                   ctx.translate(canvas.width, 0);
-                  ctx.rotate(1.5*Math.PI);
+                  ctx.rotate(-.5*Math.PI);
                   ctx.textAlign = "right";
-                  ctx.fillText('Area of sea ice (million km\u00B2)', -100, -canvas.width + 15);
+                  ctx.fillText('Area of sea ice (million km\u00B2)', -125, -canvas.width + 15);
                   ctx.stroke();
                   ctx.restore();
                 }
 
+                function title() {
+                  ctx.font = "bold 17px Arial";
+                  ctx.fillText('Average amount of sea ice in the northern hemisphere by day of the year (1981-2010)', 14, yOffsetTop/2);
+                }
+
                 // Draw the label for the x-axis
                 function xLabel() {
-                  ctx.font = "15px Arial";
-                  ctx.fillText('Month', canvas.width/2, canvas.height);
+                  ctx.font = "bold 15px Arial";
+                  ctx.fillText('Date', canvas.width/2, canvas.height);
                 }
 
                 // Draw ticks for the x-axis and their labels
                 function xTicks() {
                   // Location of the ticks
                   var tickLocX = xOffset;
-                  var tickLocY = canvas.height - yOffset;
+                  var tickLocY = canvas.height - yOffsetBottom;
                   var monthsJson =  {'Jan':31, 'Feb':28, 'Mar':31,'Apr':30,'May':31,'Jun':30,'Jul':31, 'Aug':31, 'Sep':30,'Oct':31,'Nov':30,'Dec':32};
                   var monthNames = Object.keys(monthsJson);
                   var cumulativeDays = 0;
@@ -129,14 +135,14 @@
                    correct to put this extra day at the end.
                   */
                   for (let month of monthNames) {
-                    cumulativeDays = cumulativeDays += monthsJson[month];
+                    cumulativeDays += monthsJson[month];
                     monthsJson[month] = createTransform([0, totalDays], [xOffset, graphWidth])(cumulativeDays);
                   }
 
                   for (let month of monthNames) {
                     ctx.fillText(month + ' 1', tickLocX - 10, tickLocY + 13);
                     ctx.moveTo(tickLocX, tickLocY);
-                    ctx.lineTo(tickLocX, 0);
+                    ctx.lineTo(tickLocX, yOffsetTop);
                     tickLocX = monthsJson[month]
                   }
                   ctx.stroke();
@@ -148,14 +154,14 @@
                 xLabel();
                 xTicks();
                 drawLine();
+                title();
               }
-
               draw();
-
         }
     }
     txtFile.open("GET", fileName);
     txtFile.send();
+
 
     function createTransform(domain, range){
     	// domain is a two-element array of the data bounds [domain_min, domain_max]
@@ -184,8 +190,7 @@
   </script>
   <body>
     <h1> JavaScript Intro assignment by Timo Koster </h1>
-    <h3>Average amount of sea ice in the northern hemisphere by day of the year (1981-2010)</h3>
-    <canvas id="graph" width="700" height="450" border=1px ></canvas>
+    <canvas id="graph" width="700" height="500" border=1px ></canvas>
     <a href="ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/north/daily/data/">Source of data</a>
   </body>
 </html>
