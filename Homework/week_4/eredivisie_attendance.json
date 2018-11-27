@@ -1,0 +1,164 @@
+{
+  "AFC Ajax": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "50956",
+    "Total Home Attendance": "866244",
+    "Highest Home Attendance": "53320",
+    "Lowest Home Attendance": "35000",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|AFC Ajax|2017/18"
+  },
+  "Feyenoord": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "45588",
+    "Total Home Attendance": "775000",
+    "Highest Home Attendance": "47500",
+    "Lowest Home Attendance": "37500",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Feyenoord|2017/18"
+  },
+  "AZ Alkmaar": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "43694",
+    "Total Home Attendance": "742790",
+    "Highest Home Attendance": "513500",
+    "Lowest Home Attendance": "11500",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|AZ Alkmaar|2017/18"
+  },
+  "PSV Eindhoven": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "33344",
+    "Total Home Attendance": "566840",
+    "Highest Home Attendance": "35000",
+    "Lowest Home Attendance": "32100",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|PSV Eindhoven|2017/18"
+  },
+  "FC Twente": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "25059",
+    "Total Home Attendance": "426000",
+    "Highest Home Attendance": "29300",
+    "Lowest Home Attendance": "23200",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|FC Twente|2017/18"
+  },
+  "SC Heerenveen": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "20242",
+    "Total Home Attendance": "344118",
+    "Highest Home Attendance": "25600",
+    "Lowest Home Attendance": "17300",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|SC Heerenveen|2017/18"
+  },
+  "FC Utrecht": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "18971",
+    "Total Home Attendance": "322512",
+    "Highest Home Attendance": "22111",
+    "Lowest Home Attendance": "15929",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|FC Utrecht|2017/18"
+  },
+  "NAC Breda": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "18404",
+    "Total Home Attendance": "312861",
+    "Highest Home Attendance": "18969",
+    "Lowest Home Attendance": "17035",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|NAC Breda|2017/18"
+  },
+  "FC Groningen": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "17612",
+    "Total Home Attendance": "299411",
+    "Highest Home Attendance": "22568",
+    "Lowest Home Attendance": "7500",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|FC Groningen|2017/18"
+  },
+  "Vitesse Arnhem": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "16209",
+    "Total Home Attendance": "275560",
+    "Highest Home Attendance": "20000",
+    "Lowest Home Attendance": "13921",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Vitesse Arnhem|2017/18"
+  },
+  "PEC Zwolle": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "13049",
+    "Total Home Attendance": "221838",
+    "Highest Home Attendance": "13250",
+    "Lowest Home Attendance": "12500",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|PEC Zwolle|2017/18"
+  },
+  "Roda JC Kerkrade": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "12613",
+    "Total Home Attendance": "214418",
+    "Highest Home Attendance": "15383",
+    "Lowest Home Attendance": "10482",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Roda JC Kerkrade|2017/18"
+  },
+  "Willem II Tilburg": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "12439",
+    "Total Home Attendance": "211457",
+    "Highest Home Attendance": "14700",
+    "Lowest Home Attendance": "10740",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Willem II Tilburg|2017/18"
+  },
+  "ADO Den Haag": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "11537",
+    "Total Home Attendance": "196136",
+    "Highest Home Attendance": "14031",
+    "Lowest Home Attendance": "7902",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|ADO Den Haag|2017/18"
+  },
+  "Heracles Almelo": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "10580",
+    "Total Home Attendance": "179867",
+    "Highest Home Attendance": "12080",
+    "Lowest Home Attendance": "9031",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Heracles Almelo|2017/18"
+  },
+  "Sparta Rotterdam": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "10354",
+    "Total Home Attendance": "176010",
+    "Highest Home Attendance": "13320",
+    "Lowest Home Attendance": "8846",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|Sparta Rotterdam|2017/18"
+  },
+  "VVV Venlo": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "6805",
+    "Total Home Attendance": "115692",
+    "Highest Home Attendance": "8000",
+    "Lowest Home Attendance": "5778",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|VVV Venlo|2017/18"
+  },
+  "SBV Excelsior": {
+    "League": "Eredivisie",
+    "Avg Home Attendance": "4160",
+    "Total Home Attendance": "70726",
+    "Highest Home Attendance": "4400",
+    "Lowest Home Attendance": "3704",
+    "Season": "2017/18",
+    "KEY": "Eredivisie|SBV Excelsior|2017/18"
+  }
+}

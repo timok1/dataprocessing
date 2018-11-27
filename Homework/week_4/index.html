@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+          d3.json("eredivisie_attendance.json").then(function(data) {
+            teams = Object.keys(data);
+            attendance = [];
+            var w = 800;
+            var h = 600;
+            var barPadding = 10;
+            var xPadding = 40;
+            var yPadding = 80;
+            for (let team of teams) {
+              attendance.push(parseInt(data[team]['Avg Home Attendance']));
+            }
+            var maxAttendance = d3.max(attendance);
+            var valueHeight = Math.floor(maxAttendance / 5000) * 5000 + 5000
+            var barWidth =  w / teams.length - barPadding
+
+            d3.select("head").select("title").text("Eredivisie Attendance 2017-2018");
+            d3.select("body").append("h2").text("Eredivisie Attendance 2017-2018");
+            d3.select("body").append("p").text("This chart was created by Timo Koster (10815716) for the week 4 homework assignment of the Data Processing course");
+            d3.select("body").append("p").text("Bar chart showing the average attendance of Eredivisie clubs in the 2017/2018 season");
+
+            var svg = d3.select("body").append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+
+            var yScale = d3.scaleLinear()
+                    .domain([0, valueHeight])
+                    .range([h - yPadding, yPadding]);
+
+            var xScale = d3.scalePoint()
+                    .domain(teams)
+                    .range([xPadding + barWidth/2 + barPadding, w - barWidth + barPadding]);
+
+            var rects = svg.selectAll("rect")
+                          .data(attendance)
+                          .enter()
+                          .append("rect")
+                          .attr("x", function(d, i) {
+                                    return (i * ((w-1.2 * xPadding) / teams.length) + 1.2 * xPadding);
+                                  })
+                          .attr("y", function(d) {
+                                return yScale(d);
+                                  })
+                          .attr("width", barWidth)
+                          .attr("height", function(d) {
+                                return h - yPadding - yScale(d);
+                          })
+                          .attr("fill", "skyblue");
+
+            var yAxis = d3.axisLeft(yScale);
+
+            var xAxis = d3.axisBottom(xScale)
+                          .tickValues(teams);
+
+
+            var loc = h - yPadding;
+
+            svg.append("g")
+                    .attr("class", "axis")
+                    .attr("transform", "translate(" + xPadding + ",0)")
+                    .call(yAxis);
+
+            svg.append("g")
+                    .attr("class", "axis")
+                    .attr("transform", "translate(0," + loc + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .attr("text-anchor", "end")
+                    .style("font", "12px Arial")
+                    .attr("y", 3)
+                    .attr("x", -7)
+                    .attr("transform", "rotate(-35)");
+
+            var myTool = d3.select("body")
+                  .append("div")
+                  .attr("class", "tooltip")
+                  .style("position", "absolute")
+                  .style("visibility", "hidden")
+
+            rects.on("mouseover", function(d){
+              d3.select(this).attr("fill", "midnightblue")
+              myTool.style("visibility", "visible")
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px")
+                    .style("background", "silver")
+                    .style("font", "15px Arial")
+                    .style("color", "#0E197C")
+                    .style("border-radius", "10px")
+                    .style("padding", "5px")
+                    .text('Average Attendance: ' + d);
+            })
+
+            rects.on("mouseout", function(){
+              rects.attr("fill", "skyblue")
+              myTool.style("visibility", "hidden");
+
+            })
+
+            rects.on("mousemove", function(){
+              myTool.style("left", (d3.event.pageX + 20) + "px")
+                    .style("top", (d3.event.pageY - 20) + "px");
+            })
+
+
+
+
+          })
+        </script>
+    </body>
+</html>
