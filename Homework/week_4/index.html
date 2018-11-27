@@ -13,32 +13,38 @@
             var w = 800;
             var h = 600;
             var barPadding = 10;
-            var xPadding = 40;
+            var xPadding = 65;
             var yPadding = 80;
             for (let team of teams) {
               attendance.push(parseInt(data[team]['Avg Home Attendance']));
             }
-            var maxAttendance = d3.max(attendance);
-            var valueHeight = Math.floor(maxAttendance / 5000) * 5000 + 5000
-            var barWidth =  w / teams.length - barPadding
+            // Get a round number for highest value on y-axis
+            var valueHeight = Math.floor(d3.max(attendance) / 5000) * 5000 + 5000;
+            var barWidth =  w / teams.length - barPadding;
 
             d3.select("head").select("title").text("Eredivisie Attendance 2017-2018");
-            d3.select("body").append("h2").text("Eredivisie Attendance 2017-2018");
-            d3.select("body").append("p").text("This chart was created by Timo Koster (10815716) for the week 4 homework assignment of the Data Processing course");
-            d3.select("body").append("p").text("Bar chart showing the average attendance of Eredivisie clubs in the 2017/2018 season");
+            d3.select("body").append("h2").text("Eredivisie Attendance")
+                        .style("font", "60px Calibri")
+                        .style("color", "#0E197C");
+            d3.select("body").append("p")
+                        .text("Bar chart showing the average attendance of Eredivisie clubs in the 2017/2018 season")
+                        .style("font", "14px Verdana")
+                        .style("font-weight", "bold");
 
+            // Create svg
             var svg = d3.select("body").append("svg")
                         .attr("width", w)
                         .attr("height", h);
 
             var yScale = d3.scaleLinear()
                     .domain([0, valueHeight])
-                    .range([h - yPadding, yPadding]);
+                    .range([h - yPadding, 10]);
 
             var xScale = d3.scalePoint()
                     .domain(teams)
                     .range([xPadding + barWidth/2 + barPadding, w - barWidth + barPadding]);
 
+            // Create bars
             var rects = svg.selectAll("rect")
                           .data(attendance)
                           .enter()
@@ -55,22 +61,33 @@
                           })
                           .attr("fill", "skyblue");
 
+            // Create y-axis
             var yAxis = d3.axisLeft(yScale);
-
-            var xAxis = d3.axisBottom(xScale)
-                          .tickValues(teams);
-
-
-            var loc = h - yPadding;
+            var locYAxis = h - yPadding;
 
             svg.append("g")
-                    .attr("class", "axis")
+                    .attr("class", "y-axis")
                     .attr("transform", "translate(" + xPadding + ",0)")
                     .call(yAxis);
 
+            // Add label to y-axis
+            svg.append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("x", -(h / 2))
+              .attr("y", 14)
+              .style("font", "13px Arial")
+              .style("font-weight", "bold")
+              .text("Spectators");
+
+
+            // Create x-axis
+            var xAxis = d3.axisBottom(xScale)
+                          .tickValues(teams);
+
             svg.append("g")
-                    .attr("class", "axis")
-                    .attr("transform", "translate(0," + loc + ")")
+                    .attr("class", "x-axis")
+                    .attr("transform", "translate(0," + locYAxis + ")")
+                    .style("fill", "none")
                     .call(xAxis)
                     .selectAll("text")
                     .attr("text-anchor", "end")
@@ -79,38 +96,49 @@
                     .attr("x", -7)
                     .attr("transform", "rotate(-35)");
 
-            var myTool = d3.select("body")
+            // Create tooltip
+            var tooltip = d3.select("body")
                   .append("div")
                   .attr("class", "tooltip")
                   .style("position", "absolute")
+                  .style("opacity", "0.75")
                   .style("visibility", "hidden")
 
+            // Listen if mouse touches a bar, then takes appropiate action
             rects.on("mouseover", function(d){
               d3.select(this).attr("fill", "midnightblue")
-              myTool.style("visibility", "visible")
+              tooltip.style("visibility", "visible")
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px")
                     .style("background", "silver")
                     .style("font", "15px Arial")
-                    .style("color", "#0E197C")
+                    .style("color", "darkblue")
                     .style("border-radius", "10px")
                     .style("padding", "5px")
                     .text('Average Attendance: ' + d);
             })
 
+            // Stops displaying tooltip if mouse moves away
             rects.on("mouseout", function(){
               rects.attr("fill", "skyblue")
-              myTool.style("visibility", "hidden");
-
+              tooltip.style("visibility", "hidden");
             })
 
+            // Show tooltip next to mouse
             rects.on("mousemove", function(){
-              myTool.style("left", (d3.event.pageX + 20) + "px")
+              tooltip.style("left", (d3.event.pageX + 20) + "px")
                     .style("top", (d3.event.pageY - 20) + "px");
             })
 
 
 
+            d3.select("body").append("p")
+            .text("This chart was created by Timo Koster (10815716) for the week 4 homework assignment of the Data Processing course.")
+            .style("font", "14px Verdana");
+
+            d3.select("body").append("a")
+                .text('Source of data')
+                .attr("href", "https://www.kaggle.com/cclayford/statbunker-football-stats");
 
           })
         </script>

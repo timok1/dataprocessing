@@ -16,6 +16,7 @@ def write_json(input, output, id, league):
 
         # For every line create a key and its attributes.
         for line in reader:
+            # Select items from correct league
             if line['League'] == league:
                 child = {}
                 for item in headers:
