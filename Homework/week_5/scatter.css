@@ -1,0 +1,51 @@
+/* Timo Koster, 10815716*/
+
+h1 {
+  font: 45px Calibri;
+  color: #0E197C;
+}
+
+text.axisLabel {
+  font: 13px Arial;
+  font-weight: bold;
+}
+
+text.graphTitle {
+  font: 15px Verdana;
+  font-weight: bold;
+}
+
+text.legendTitle {
+  font: 13px Verdana;
+  font-weight: bold;
+}
+text.legendText {
+  font: 12px Verdana;
+}
+
+text.graphYearText {
+  font: 40px Verdana;
+  fill: green;
+  opacity: 0.6;
+}
+
+a {
+  font: 12px Verdana;
+}
+
+p{
+  font: 14px Verdana;
+}
+div.tooltip {
+  position: absolute;
+  opacity: 0.80;
+  visibility: hidden;
+  background: white;
+  font: 13px Verdana;
+  color: #178438;
+  border-radius: 10px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
