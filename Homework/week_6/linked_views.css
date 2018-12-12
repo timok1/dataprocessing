@@ -1,0 +1,33 @@
+text.graphTitle {
+  font: 40px Calibri;
+  fill: #0E197C;
+}
+
+
+div.tooltip {
+  position: absolute;
+  opacity: 0.90;
+  visibility: hidden;
+  background: white;
+  font: 13px Verdana;
+  color: #178438;
+  border-radius: 10px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+.countries {
+  stroke: black;
+  stroke-width: .5;
+}
+
+text.y-axis-label {
+  font: 13px Arial;
+  font-weight: bold;
+}
+
+.x-axis {
+  font: 10px Verdana;
+}
