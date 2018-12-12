@@ -2,536 +2,931 @@
   "Lewis Hamilton": {
     "nationality": "British",
     "victories": 62,
+    "teams": {
+      "McLaren": 21,
+      "Mercedes": 41
+    },
     "country_id": "GBR"
   },
   "Nico Rosberg": {
     "nationality": "German",
     "victories": 23,
+    "teams": {
+      "Mercedes": 23
+    },
     "country_id": "DEU"
   },
   "Fernando Alonso": {
     "nationality": "Spanish",
     "victories": 32,
+    "teams": {
+      "Renault": 17,
+      "McLaren": 4,
+      "Ferrari": 11
+    },
     "country_id": "ESP"
   },
   "Heikki Kovalainen": {
     "nationality": "Finnish",
     "victories": 1,
+    "teams": {
+      "McLaren": 1
+    },
     "country_id": "FIN"
   },
-  "Kimi R\ufffd_ikk\u0326nen": {
+  "Kimi R\u00e4ikk\u00f6nen": {
     "nationality": "Finnish",
     "victories": 20,
+    "teams": {
+      "Ferrari": 9,
+      "McLaren": 9,
+      "Lotus F1": 2
+    },
     "country_id": "FIN"
   },
   "Robert Kubica": {
     "nationality": "Polish",
     "victories": 1,
+    "teams": {
+      "BMW Sauber": 1
+    },
     "country_id": "POL"
   },
   "Felipe Massa": {
     "nationality": "Brazilian",
     "victories": 11,
+    "teams": {
+      "Ferrari": 11
+    },
     "country_id": "BRA"
   },
   "David Coulthard": {
     "nationality": "British",
     "victories": 13,
+    "teams": {
+      "McLaren": 12,
+      "Williams": 1
+    },
     "country_id": "GBR"
   },
   "Jarno Trulli": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Renault": 1
+    },
     "country_id": "ITA"
   },
   "Mark Webber": {
     "nationality": "Australian",
     "victories": 9,
+    "teams": {
+      "Red Bull": 9
+    },
     "country_id": "AUS"
   },
   "Jenson Button": {
     "nationality": "British",
     "victories": 15,
+    "teams": {
+      "Honda": 1,
+      "Brawn": 6,
+      "McLaren": 8
+    },
     "country_id": "GBR"
   },
   "Sebastian Vettel": {
     "nationality": "German",
     "victories": 47,
+    "teams": {
+      "Toro Rosso": 1,
+      "Red Bull": 38,
+      "Ferrari": 8
+    },
     "country_id": "DEU"
   },
   "Giancarlo Fisichella": {
     "nationality": "Italian",
     "victories": 3,
+    "teams": {
+      "Renault": 2,
+      "Jordan": 1
+    },
     "country_id": "ITA"
   },
   "Rubens Barrichello": {
     "nationality": "Brazilian",
     "victories": 11,
+    "teams": {
+      "Ferrari": 9,
+      "Brawn": 2
+    },
     "country_id": "BRA"
   },
   "Ralf Schumacher": {
     "nationality": "German",
     "victories": 6,
+    "teams": {
+      "Williams": 6
+    },
     "country_id": "DEU"
   },
   "Michael Schumacher": {
     "nationality": "German",
     "victories": 91,
+    "teams": {
+      "Ferrari": 72,
+      "Benetton": 19
+    },
     "country_id": "DEU"
   },
   "Juan Pablo Montoya": {
     "nationality": "Colombian",
     "victories": 7,
+    "teams": {
+      "McLaren": 3,
+      "Williams": 4
+    },
     "country_id": "COL"
   },
   "Jacques Villeneuve": {
     "nationality": "Canadian",
     "victories": 11,
+    "teams": {
+      "Williams": 11
+    },
     "country_id": "CAN"
   },
   "Olivier Panis": {
     "nationality": "French",
     "victories": 1,
+    "teams": {
+      "Ligier": 1
+    },
     "country_id": "FRA"
   },
   "Heinz-Harald Frentzen": {
     "nationality": "German",
     "victories": 3,
+    "teams": {
+      "Jordan": 2,
+      "Williams": 1
+    },
     "country_id": "DEU"
   },
   "Jean Alesi": {
     "nationality": "French",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "FRA"
   },
   "Eddie Irvine": {
     "nationality": "British",
     "victories": 4,
+    "teams": {
+      "Ferrari": 4
+    },
     "country_id": "GBR"
   },
-  "Mika H\ufffd_kkinen": {
+  "Mika H\u00e4kkinen": {
     "nationality": "Finnish",
     "victories": 20,
+    "teams": {
+      "McLaren": 20
+    },
     "country_id": "FIN"
   },
   "Johnny Herbert": {
     "nationality": "British",
     "victories": 3,
+    "teams": {
+      "Stewart": 1,
+      "Benetton": 2
+    },
     "country_id": "GBR"
   },
   "Damon Hill": {
     "nationality": "British",
     "victories": 22,
+    "teams": {
+      "Jordan": 1,
+      "Williams": 21
+    },
     "country_id": "GBR"
   },
   "Gerhard Berger": {
     "nationality": "Austrian",
     "victories": 10,
+    "teams": {
+      "Benetton": 2,
+      "Ferrari": 5,
+      "McLaren": 3
+    },
     "country_id": "AUT"
   },
   "Nigel Mansell": {
     "nationality": "British",
     "victories": 31,
+    "teams": {
+      "Williams": 28,
+      "Ferrari": 3
+    },
     "country_id": "GBR"
   },
   "Ayrton Senna": {
     "nationality": "Brazilian",
     "victories": 41,
+    "teams": {
+      "McLaren": 35,
+      "Team Lotus": 6
+    },
     "country_id": "BRA"
   },
   "Michele Alboreto": {
     "nationality": "Italian",
     "victories": 5,
+    "teams": {
+      "Ferrari": 3,
+      "Tyrrell": 2
+    },
     "country_id": "ITA"
   },
   "Alain Prost": {
     "nationality": "French",
     "victories": 51,
+    "teams": {
+      "Williams": 7,
+      "Ferrari": 5,
+      "McLaren": 30,
+      "Renault": 9
+    },
     "country_id": "FRA"
   },
   "Riccardo Patrese": {
     "nationality": "Italian",
     "victories": 6,
+    "teams": {
+      "Williams": 4,
+      "Brabham": 2
+    },
     "country_id": "ITA"
   },
   "Thierry Boutsen": {
     "nationality": "Belgian",
     "victories": 3,
+    "teams": {
+      "Williams": 3
+    },
     "country_id": "BEL"
   },
   "Nelson Piquet": {
     "nationality": "Brazilian",
     "victories": 23,
+    "teams": {
+      "Benetton": 3,
+      "Williams": 7,
+      "Brabham": 13
+    },
     "country_id": "BRA"
   },
   "Alessandro Nannini": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Benetton": 1
+    },
     "country_id": "ITA"
   },
-  "Ren\u0329 Arnoux": {
+  "Ren\u00e9 Arnoux": {
     "nationality": "French",
     "victories": 7,
+    "teams": {
+      "Ferrari": 3,
+      "Renault": 4
+    },
     "country_id": "FRA"
   },
   "Jacques Laffite": {
     "nationality": "French",
     "victories": 6,
+    "teams": {
+      "Ligier": 6
+    },
     "country_id": "FRA"
   },
   "Elio de Angelis": {
     "nationality": "Italian",
     "victories": 2,
+    "teams": {
+      "Team Lotus": 2
+    },
     "country_id": "ITA"
   },
   "Patrick Tambay": {
     "nationality": "French",
     "victories": 2,
+    "teams": {
+      "Ferrari": 2
+    },
     "country_id": "FRA"
   },
   "Keke Rosberg": {
     "nationality": "Finnish",
     "victories": 5,
+    "teams": {
+      "Williams": 5
+    },
     "country_id": "FIN"
   },
   "Alan Jones": {
     "nationality": "Australian",
     "victories": 12,
+    "teams": {
+      "Williams": 11,
+      "Shadow": 1
+    },
     "country_id": "AUS"
   },
   "Niki Lauda": {
     "nationality": "Austrian",
     "victories": 25,
+    "teams": {
+      "McLaren": 8,
+      "Brabham": 2,
+      "Ferrari": 15
+    },
     "country_id": "AUT"
   },
   "John Watson": {
     "nationality": "British",
     "victories": 5,
+    "teams": {
+      "McLaren": 4,
+      "Penske": 1
+    },
     "country_id": "GBR"
   },
   "Carlos Reutemann": {
     "nationality": "Argentine",
     "victories": 12,
+    "teams": {
+      "Williams": 3,
+      "Ferrari": 5,
+      "Brabham": 4
+    },
     "country_id": "ARG"
   },
   "Jochen Mass": {
     "nationality": "German",
     "victories": 1,
+    "teams": {
+      "McLaren": 1
+    },
     "country_id": "DEU"
   },
   "Didier Pironi": {
     "nationality": "French",
     "victories": 3,
+    "teams": {
+      "Ferrari": 2,
+      "Ligier": 1
+    },
     "country_id": "FRA"
   },
   "Gilles Villeneuve": {
     "nationality": "Canadian",
     "victories": 6,
+    "teams": {
+      "Ferrari": 6
+    },
     "country_id": "CAN"
   },
   "Mario Andretti": {
     "nationality": "American",
     "victories": 12,
+    "teams": {
+      "Team Lotus": 11,
+      "Ferrari": 1
+    },
     "country_id": "USA"
   },
   "Jean-Pierre Jabouille": {
     "nationality": "French",
     "victories": 2,
+    "teams": {
+      "Renault": 2
+    },
     "country_id": "FRA"
   },
   "Patrick Depailler": {
     "nationality": "French",
     "victories": 2,
+    "teams": {
+      "Ligier": 1,
+      "Tyrrell": 1
+    },
     "country_id": "FRA"
   },
   "Jody Scheckter": {
     "nationality": "South African",
     "victories": 10,
+    "teams": {
+      "Ferrari": 3,
+      "Wolf": 3,
+      "Tyrrell": 4
+    },
     "country_id": "ZAF"
   },
   "Clay Regazzoni": {
     "nationality": "Swiss",
     "victories": 5,
+    "teams": {
+      "Williams": 1,
+      "Ferrari": 4
+    },
     "country_id": "CHE"
   },
   "Emerson Fittipaldi": {
     "nationality": "Brazilian",
     "victories": 14,
+    "teams": {
+      "McLaren": 5,
+      "Team Lotus": 9
+    },
     "country_id": "BRA"
   },
   "Vittorio Brambilla": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "March": 1
+    },
     "country_id": "ITA"
   },
   "James Hunt": {
     "nationality": "British",
     "victories": 10,
+    "teams": {
+      "McLaren": 9,
+      "Hesketh": 1
+    },
     "country_id": "GBR"
   },
   "Jacky Ickx": {
     "nationality": "Belgian",
     "victories": 8,
+    "teams": {
+      "Ferrari": 6,
+      "Brabham-Ford": 2
+    },
     "country_id": "BEL"
   },
   "Ronnie Peterson": {
     "nationality": "Swedish",
     "victories": 10,
+    "teams": {
+      "Team Lotus": 9,
+      "March": 1
+    },
     "country_id": "SWE"
   },
   "Carlos Pace": {
     "nationality": "Brazilian",
     "victories": 1,
+    "teams": {
+      "Brabham": 1
+    },
     "country_id": "BRA"
   },
   "Gunnar Nilsson": {
     "nationality": "Swedish",
     "victories": 1,
+    "teams": {
+      "Team Lotus": 1
+    },
     "country_id": "SWE"
   },
   "Graham Hill": {
     "nationality": "British",
     "victories": 14,
+    "teams": {
+      "Lotus-Ford": 4,
+      "BRM": 10
+    },
     "country_id": "GBR"
   },
   "Denny Hulme": {
     "nationality": "New Zealander",
     "victories": 8,
+    "teams": {
+      "McLaren": 3,
+      "McLaren-Ford": 3,
+      "Brabham-Repco": 2
+    },
     "country_id": "NZL"
   },
   "Jean-Pierre Beltoise": {
     "nationality": "French",
     "victories": 1,
+    "teams": {
+      "BRM": 1
+    },
     "country_id": "FRA"
   },
   "Peter Revson": {
     "nationality": "American",
     "victories": 2,
+    "teams": {
+      "McLaren": 2
+    },
     "country_id": "USA"
   },
   "Peter Gethin": {
     "nationality": "British",
     "victories": 1,
+    "teams": {
+      "BRM": 1
+    },
     "country_id": "GBR"
   },
-  "Fran\u0324ois Cevert": {
+  "Fran\u00e7ois Cevert": {
     "nationality": "French",
     "victories": 1,
+    "teams": {
+      "Tyrrell": 1
+    },
     "country_id": "FRA"
   },
   "Jackie Stewart": {
     "nationality": "British",
     "victories": 27,
+    "teams": {
+      "Tyrrell": 15,
+      "March": 1,
+      "Matra-Ford": 9,
+      "BRM": 2
+    },
     "country_id": "GBR"
   },
   "John Surtees": {
     "nationality": "British",
     "victories": 6,
+    "teams": {
+      "Honda": 1,
+      "Ferrari": 4,
+      "Cooper-Maserati": 1
+    },
     "country_id": "GBR"
   },
-  "Pedro Rodr\ufffd_guez": {
+  "Pedro Rodr\u00edguez": {
     "nationality": "Mexican",
     "victories": 2,
+    "teams": {
+      "BRM": 1,
+      "Cooper-Maserati": 1
+    },
     "country_id": "MEX"
   },
   "Jo Siffert": {
     "nationality": "Swiss",
     "victories": 2,
+    "teams": {
+      "BRM": 1,
+      "Lotus-Ford": 1
+    },
     "country_id": "CHE"
   },
   "Jo Bonnier": {
     "nationality": "Swedish",
     "victories": 1,
+    "teams": {
+      "BRM": 1
+    },
     "country_id": "SWE"
   },
   "Jack Brabham": {
     "nationality": "Australian",
     "victories": 14,
+    "teams": {
+      "Brabham": 1,
+      "Brabham-Repco": 6,
+      "Cooper-Climax": 7
+    },
     "country_id": "AUS"
   },
   "Jochen Rindt": {
     "nationality": "Austrian",
     "victories": 6,
+    "teams": {
+      "Team Lotus": 5,
+      "Lotus-Ford": 1
+    },
     "country_id": "AUT"
   },
   "Bruce McLaren": {
     "nationality": "New Zealander",
     "victories": 4,
+    "teams": {
+      "McLaren-Ford": 1,
+      "Cooper-Climax": 3
+    },
     "country_id": "NZL"
   },
   "Dan Gurney": {
     "nationality": "American",
     "victories": 4,
+    "teams": {
+      "Eagle-Weslake": 1,
+      "Brabham-Climax": 2,
+      "Porsche": 1
+    },
     "country_id": "USA"
   },
   "Jim Clark": {
     "nationality": "British",
     "victories": 25,
+    "teams": {
+      "Lotus-Ford": 5,
+      "Lotus-BRM": 1,
+      "Lotus-Climax": 19
+    },
     "country_id": "GBR"
   },
   "Ludovico Scarfiotti": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "ITA"
   },
   "Lorenzo Bandini": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "ITA"
   },
   "Richie Ginther": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Honda": 1
+    },
     "country_id": "USA"
   },
   "Giancarlo Baghetti": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "ITA"
   },
   "Phil Hill": {
     "nationality": "American",
     "victories": 3,
+    "teams": {
+      "Ferrari": 3
+    },
     "country_id": "USA"
   },
   "Innes Ireland": {
     "nationality": "British",
     "victories": 1,
+    "teams": {
+      "Lotus-Climax": 1
+    },
     "country_id": "GBR"
   },
   "Maurice Trintignant": {
     "nationality": "French",
     "victories": 2,
+    "teams": {
+      "Cooper": 1,
+      "Ferrari": 1
+    },
     "country_id": "FRA"
   },
   "Rodger Ward": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Watson": 1
+    },
     "country_id": "USA"
   },
   "Stirling Moss": {
     "nationality": "British",
     "victories": 16,
+    "teams": {
+      "Lotus-Climax": 2,
+      "Team Lotus": 2,
+      "Cooper-Climax": 2,
+      "Cooper": 1,
+      "Vanwall": 6,
+      "Maserati": 2,
+      "Mercedes": 1
+    },
     "country_id": "GBR"
   },
   "Wolfgang von Trips": {
     "nationality": "German",
     "victories": 2,
+    "teams": {
+      "Ferrari": 2
+    },
     "country_id": "DEU"
   },
   "Tony Brooks": {
     "nationality": "British",
     "victories": 6,
+    "teams": {
+      "Ferrari": 2,
+      "Vanwall": 4
+    },
     "country_id": "GBR"
   },
-  "Jos\u0329 Froil\ufffd\ufffdn Gonz\ufffd\ufffdlez": {
-    "nationality": "Argentine",
+  "Jos\u00e9 Froil\u00e1n Gonz\u00e1lez 05/10/1922": {
+    "nationality": "http://en.wikipedia.org/wiki/Jos%C3%A9_Froil%C3%A1n_Gonz%C3%A1lez",
     "victories": 2,
-    "country_id": "ARG"
+    "teams": {
+      "Ferrari": 2
+    }
   },
   "Jim Rathmann": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Watson": 1
+    },
     "country_id": "USA"
   },
   "Jimmy Bryan": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Epperly": 1
+    },
     "country_id": "USA"
   },
   "Troy Ruttman": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Kuzma": 1
+    },
     "country_id": "USA"
   },
   "Pat Flaherty": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Watson": 1
+    },
     "country_id": "USA"
   },
   "Luigi Musso": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "ITA"
   },
   "Mike Hawthorn": {
     "nationality": "British",
     "victories": 3,
+    "teams": {
+      "Ferrari": 3
+    },
     "country_id": "GBR"
   },
   "Juan Fangio": {
     "nationality": "Argentine",
     "victories": 24,
+    "teams": {
+      "Maserati": 7,
+      "Ferrari": 3,
+      "Mercedes": 8,
+      "Alfa Romeo": 6
+    },
     "country_id": "ARG"
   },
   "Peter Collins": {
     "nationality": "British",
     "victories": 3,
+    "teams": {
+      "Ferrari": 3
+    },
     "country_id": "GBR"
   },
   "Johnnie Parsons": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Kurtis Kraft": 1
+    },
     "country_id": "USA"
   },
   "Sam Hanks": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Epperly": 1
+    },
     "country_id": "USA"
   },
   "Bob Sweikert": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Kurtis Kraft": 1
+    },
     "country_id": "USA"
   },
   "Piero Taruffi": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Ferrari": 1
+    },
     "country_id": "ITA"
   },
   "Nino Farina": {
     "nationality": "Italian",
     "victories": 5,
+    "teams": {
+      "Ferrari": 1,
+      "Alfa Romeo": 4
+    },
     "country_id": "ITA"
   },
   "Alberto Ascari": {
     "nationality": "Italian",
     "victories": 13,
+    "teams": {
+      "Ferrari": 13
+    },
     "country_id": "ITA"
   },
   "Bill Vukovich": {
     "nationality": "American",
     "victories": 2,
+    "teams": {
+      "Kurtis Kraft": 2
+    },
     "country_id": "USA"
   },
   "Lee Wallard": {
     "nationality": "American",
     "victories": 1,
+    "teams": {
+      "Kurtis Kraft": 1
+    },
     "country_id": "USA"
   },
   "Luigi Fagioli": {
     "nationality": "Italian",
     "victories": 1,
+    "teams": {
+      "Alfa Romeo": 1
+    },
     "country_id": "ITA"
   },
   "Pastor Maldonado": {
     "nationality": "Venezuelan",
     "victories": 1,
+    "teams": {
+      "Williams": 1
+    },
     "country_id": "VEN"
   },
   "Daniel Ricciardo": {
     "nationality": "Australian",
     "victories": 5,
+    "teams": {
+      "Red Bull": 5
+    },
     "country_id": "AUS"
   },
   "Valtteri Bottas": {
     "nationality": "Finnish",
     "victories": 3,
+    "teams": {
+      "Mercedes": 3
+    },
     "country_id": "FIN"
   },
   "Max Verstappen": {
     "nationality": "Dutch",
     "victories": 3,
+    "teams": {
+      "Red Bull": 3
+    },
     "country_id": "NLD"
   }
 }

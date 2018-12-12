@@ -4,7 +4,21 @@ text.graphTitle {
 }
 
 
-div.tooltip {
+div.tooltip_map {
+  position: absolute;
+  opacity: 0.90;
+  visibility: hidden;
+  background: white;
+  font: 13px Verdana;
+  color: #178438;
+  border-radius: 10px;
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+div.tooltip_graph {
   position: absolute;
   opacity: 0.90;
   visibility: hidden;

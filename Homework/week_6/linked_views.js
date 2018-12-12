@@ -1,6 +1,5 @@
 // Timo Koster 10815716
 var winners = "race_winners.json";
-var pop = "world_population.tsv";
 var world_countries = "world_countries.json";
 var requests = [d3.json(world_countries), d3.json(winners)];
 
@@ -46,7 +45,6 @@ function createMap(stuff) {
   var path = d3.geoPath().projection(projection);
 
 
-
   function ready(data, winners) {
     var winsByCountry = {};
 
@@ -83,11 +81,10 @@ function createMap(stuff) {
         .attr("class", "names")
         .attr("d", path);
 
-    d3.select("body").append("p");
 
     var tooltip = d3.select("body")
       .append("div")
-      .attr("class", "tooltip");
+      .attr("class", "tooltip_map");
 
     // Listen if mouse touches a datapoint, highlight point and display tooltip
     countries.on("mouseover", function(d){
@@ -210,4 +207,34 @@ function createBarChart(winners, countryID) {
           .attr("y", 3)
           .attr("x", -7)
           .attr("transform", "rotate(-30)");
+
+  var tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip_graph")
+        .style("visibility", "hidden");
+
+  // Listen if mouse touches a bar, then takes appropiate action
+  rects.on("mouseover", function(d){
+    d3.select(this).attr("fill", "midnightblue")
+    tooltipText = ''
+    for (team in winners[d].teams) {
+      tooltipText += ('<br><b> &nbsp&nbsp &bull; ' + team + ': </b>' + winners[d].teams[team])
+    }
+    tooltip.style("visibility", "visible")
+          .html("<b><font size='+1'><font color='black'>"+ d +
+              "</font></font><br>Total Race Victories: </b>" +
+              winners[d].victories + tooltipText);
+  })
+
+  // Stops displaying tooltip if mouse moves away
+  rects.on("mouseout", function(){
+    rects.attr("fill", "skyblue")
+    tooltip.style("visibility", "hidden");
+  })
+
+  // Show tooltip next to mouse
+  rects.on("mousemove", function(){
+    tooltip.style("left", (d3.event.pageX + 10) + "px")
+          .style("top", (d3.event.pageY - 20) + "px");
+  })
 }
