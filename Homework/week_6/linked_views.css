@@ -1,4 +1,6 @@
-text.graphTitle {
+/* Timo Koster, 10815716*/
+
+text.mapTitle {
   font: 40px Calibri;
   fill: #0E197C;
 }
@@ -20,11 +22,11 @@ div.tooltip_map {
 
 div.tooltip_graph {
   position: absolute;
-  opacity: 0.90;
+  opacity: 0.80;
   visibility: hidden;
   background: white;
   font: 13px Verdana;
-  color: #178438;
+  color: #396AC0;
   border-radius: 10px;
   padding: 5px;
   border-style: solid;
@@ -44,4 +46,21 @@ text.y-axis-label {
 
 .x-axis {
   font: 10px Verdana;
+}
+
+text.graphTitle {
+  font: 40px Calibri;
+  fill: #0E197C;
+}
+
+text.legendTitle {
+  font: 14px Verdana;
+  font-weight: bold;
+}
+text.legendText {
+  font: 12px Verdana;
+}
+
+text.sources {
+  font: 12px Verdana;
 }
