@@ -2,6 +2,7 @@
 
 text.mapTitle {
   font: 35px Calibri;
+  font-weight: bold;
   fill: #0E197C;
 }
 
@@ -50,6 +51,7 @@ text.y-axis-label {
 
 text.graphTitle {
   font: 35px Calibri;
+  font-weight: bold;
   fill: #0E197C;
 }
 

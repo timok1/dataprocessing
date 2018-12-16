@@ -19,15 +19,21 @@ function createMap(response) {
 
   var path = d3.geoPath();
   // Create svg for map
-  var svg_map = d3.select("body")
+  var svgMap = d3.select("body")
               .append("svg")
               .attr("width", width)
               .attr("height", height)
               .append('g')
               .attr('class', 'map');
 
+  svgMap.append("rect")
+      .attr("width", "100%")
+      .attr("height", height - 43)
+      .attr("y", 43)
+      .attr("fill", "aliceblue");
+
   // Map title
-  svg_map.append("text")
+  svgMap.append("text")
       .attr("class", "mapTitle")
       .attr("x", width/2)
       .attr("y", 35)
@@ -62,7 +68,7 @@ function createMap(response) {
   var colorArray = ['lightgray','#e5f5e0','#c7e9c0','#a1d99b','#74c476','#41ab5d','#238b45','#006d2c','#00441b'];
   var nColors = colorArray.length;
   // Add countries to map
-  var countries = svg_map.append("g")
+  var countries = svgMap.append("g")
       .attr("class", "countries")
     .selectAll("path")
       .data(data.features)
@@ -81,7 +87,7 @@ function createMap(response) {
         }
       })
 
-  svg_map.append("path")
+  svgMap.append("path")
       .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id; }))
       .attr("class", "names")
       .attr("d", path);
@@ -123,15 +129,13 @@ function createMap(response) {
     }
   })
 
-
-
   // Create legend
   function legend(){
     var hLegend = 200;
     var wLegend = 130;
     var locLegend = [width - wLegend - 10, 50]
     // Create outline for legend
-    var legendBox = svg_map.append("rect")
+    var legendBox = svgMap.append("rect")
                       .attr("x", locLegend[0])
                       .attr("y", locLegend[1])
                       .attr("width", wLegend)
@@ -147,7 +151,7 @@ function createMap(response) {
     // Creates element in legend for every element in colorArray
     for (let color of colorArray){
       var yLocCircle = locLegend[1] + hLegend - 15 - i/nColors*(hLegend-titleSpace);
-      svg_map.append("circle")
+      svgMap.append("circle")
           .attr("r", 7)
           .attr("cx", xLocCircle)
           .attr("cy", yLocCircle)
@@ -156,7 +160,7 @@ function createMap(response) {
           .attr("stroke-width", 1);
       // Text for 0 wins
       if (i === 0) {
-        svg_map.append("text")
+        svgMap.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -164,7 +168,7 @@ function createMap(response) {
       }
       // Exclude 0 from text at 1-9
       else if (i === 1) {
-        svg_map.append("text")
+        svgMap.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -172,7 +176,7 @@ function createMap(response) {
       }
       // normal text for most elements
       else if ((i + 1) < nColors) {
-        svg_map.append("text")
+        svgMap.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -180,13 +184,13 @@ function createMap(response) {
       }
       // Give last element different text, and create legendTitle
       else {
-        svg_map.append("text")
+        svgMap.append("text")
             .attr("class", "legendTitle")
             .attr("text-anchor", "middle")
             .attr("x", locLegend[0] + wLegend / 2)
             .attr("y", locLegend[1] + titleSpace / 2 + 4)
             .text("Race Wins");
-        svg_map.append("text")
+        svgMap.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -208,7 +212,7 @@ function createBarChart(winners, countryID, maxWins) {
   var first = true;
   // Create new json for just drivers of this country
   for (let driver of drivers) {
-    if (winners[driver]['country_id'] == countryID){
+    if (winners[driver]['country_id'] === countryID){
       nationalDrivers[driver] = {'victories': winners[driver]['victories']};
       if (first) {
         var nationality = winners[driver]['nationality'];
@@ -219,12 +223,13 @@ function createBarChart(winners, countryID, maxWins) {
 
   var nationalDriversNames = Object.keys(nationalDrivers);
 
-  var margin = {top: 50, right: 0, bottom: 70, left: 65};
+  var margin = {top: 50, right: 0, bottom: 70, left: 90};
   var w = 800 - margin.left;
   var h = 645 - margin.top - margin.bottom;
 
+  // Create svg on first time
   if (d3.select(".barChart")['_groups'][0][0] === null) {
-    var svg_chart = d3.select("body").append("svg")
+    var svgChart = d3.select("body").append("svg")
                   .attr("class", "barChart")
                   .attr("width", w + margin.left)
                   .attr("height", h + margin.top + margin.bottom)
@@ -234,15 +239,14 @@ function createBarChart(winners, countryID, maxWins) {
     var yScale = d3.scaleLinear()
             .domain([0, maxWins])
             .range([h, 0]);
-
     // Create y-axis
     var yAxis = d3.axisLeft(yScale);
-    svg_chart.append("g")
+    svgChart.append("g")
             .attr("class", "y-axis")
             .call(yAxis);
 
     // Add label to y-axis
-    svg_chart.append("text")
+    svgChart.append("text")
       .attr("transform", "rotate(-90)")
       .attr("class", "y-axis-label")
       .attr("x", -(h / 2))
@@ -250,12 +254,14 @@ function createBarChart(winners, countryID, maxWins) {
       .attr("y", - 35)
       .text("Race Victories");
   }
-  var svg_chart = d3.select(".barChart")
+
+  // Select chart
+  var svgChart = d3.select(".barChart")
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   // Chart title
   d3.select(".graphTitle").remove();
-  svg_chart.append("text")
+  svgChart.append("text")
       .attr("class", "graphTitle")
       .attr("x", 0)
       .attr("y", - 18)
@@ -280,7 +286,7 @@ function createBarChart(winners, countryID, maxWins) {
 
   // Create bars
   d3.selectAll(".bar").remove();
-  var rects = svg_chart.selectAll("rect")
+  var rects = svgChart.selectAll("rect")
                 .data(nationalDriversNames)
                 .enter()
                 .append("rect")
@@ -297,10 +303,10 @@ function createBarChart(winners, countryID, maxWins) {
                 })
                 .attr("fill", "skyblue");
 
-  d3.select(".x-axis").remove();
   // Create x-axis
+  d3.select(".x-axis").remove();
   var xAxis = d3.axisBottom(xScale);
-  svg_chart.append("g")
+  svgChart.append("g")
           .attr("class", "x-axis")
           .attr("transform", "translate(0," + h + ")")
           .call(xAxis)
@@ -317,7 +323,7 @@ function createBarChart(winners, countryID, maxWins) {
         .attr("class", "tooltipGraph")
         .style("visibility", "hidden");
 
-  // Listen if mouse touches a bar, then takes appropiate action
+  // Listen if mouse touches a bar, then show tooltip and change color of bar
   rects.on("mouseover", function(d){
     d3.select(this).attr("fill", "midnightblue")
     tooltipText = ''
@@ -344,10 +350,11 @@ function createBarChart(winners, countryID, maxWins) {
   })
 }
 
+// Add text at end of page
 function addText() {
   d3.select("body")
     .append("p")
-          .html("The map shows the amount of F1 race victories by country. Hover over a country to get the precise amount of victories, <br>click on a country to see a bar chart detailing the victories per driver. If you hover over the bars of the chart you will see<br> the amount of victories the driver got per team. Note: from 1950 until 1960 the Indy 500 was officially part of the <br>F1 World Championship, though F1 drivers rarely took part in these races. These races are included in the dataset<br> and are the cause of the somewhat inflated US numbers<br>")
+          .html("The map shows the amount of F1 race victories per country. Hover over a country to get the precise amount of victories, <br>click on a country to see a bar chart detailing the victories per driver. If you hover over the bars of the chart you will see<br> the amount of victories the driver got per team. Note: from 1950 until 1960 the Indy 500 was officially part of the <br>F1 World Championship, though F1 drivers rarely took part in these races. These races are included in the dataset<br> and are the cause of the somewhat inflated US numbers.<br>")
     .append("p")
           .html("Map and chart created by Timo Koster (10815716) for the Linked Views homework assignment for the Data Processing course.<br>")
     .append("a")

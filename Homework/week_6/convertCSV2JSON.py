@@ -49,7 +49,7 @@ def write_json(drivers, teams, results, output):
                 child['teams'] = teams
                 # Get country id from nationality
                 for item in country_data:
-                    # Don't less French territories mess this up
+                    # Don't let French territories mess this up
                     if driver['nationality'] == 'French':
                         child['country_id'] = 'FRA'
                     elif item['demonym'] == driver['nationality']:
