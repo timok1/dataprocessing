@@ -5,6 +5,7 @@ var requests = [d3.json(world_countries), d3.json(winners)];
 
 Promise.all(requests).then(function(response) {
   createMap(response);
+  addText();
 })
 
 // Creates map. Map is heavily based on map by Micah Stubbs from http://bl.ocks.org/micahstubbs/8e15870eb432a21f0bc4d3d527b2d14f
@@ -12,24 +13,25 @@ function createMap(response) {
   var data = response[0];
   var winners = response[1];
 
-  var margin = {top: 0, right: 50, bottom: 0, left: 0},
-              width = 950 - margin.left - margin.right,
+  var margin = {top: 0, right: 0, bottom: 0, left: 0},
+              width = 880 - margin.left - margin.right,
               height = 650 - margin.top - margin.bottom;
 
   var path = d3.geoPath();
   // Create svg for map
-  var svg = d3.select("body")
+  var svg_map = d3.select("body")
               .append("svg")
               .attr("width", width)
               .attr("height", height)
               .append('g')
               .attr('class', 'map');
+
   // Map title
-  svg.append("text")
+  svg_map.append("text")
       .attr("class", "mapTitle")
-      .attr("x", 30)
+      .attr("x", width/2)
       .attr("y", 35)
-      .attr("text-anchor", "start")
+      .attr("text-anchor", "middle")
       .text("F1 Race Wins Per Country (1950-2017)");
 
   // Projection, zoom level and center of map
@@ -60,7 +62,7 @@ function createMap(response) {
   var colorArray = ['lightgray','#e5f5e0','#c7e9c0','#a1d99b','#74c476','#41ab5d','#238b45','#006d2c','#00441b'];
   var nColors = colorArray.length;
   // Add countries to map
-  var countries = svg.append("g")
+  var countries = svg_map.append("g")
       .attr("class", "countries")
     .selectAll("path")
       .data(data.features)
@@ -79,7 +81,7 @@ function createMap(response) {
         }
       })
 
-  svg.append("path")
+  svg_map.append("path")
       .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id; }))
       .attr("class", "names")
       .attr("d", path);
@@ -87,7 +89,7 @@ function createMap(response) {
   // tooltip for map
   var tooltip = d3.select("body")
     .append("div")
-    .attr("class", "tooltip_map");
+    .attr("class", "tooltipMap");
 
   // Listen if mouse touches country, highlight country and display tooltip
   countries.on("mouseover", function(d){
@@ -96,7 +98,7 @@ function createMap(response) {
             .html("<b><font size='+1'><font color='black'>"+ d.properties.name +
                 "</font></font><br><b>Race Wins: </b>" + winsByCountry[d.id]);
       d3.select(this).style("stroke-width", 4)
-          .style("stroke", "deepskyblue")
+          .style("stroke", "gold")
           .style("cursor","pointer");
     }
   })
@@ -121,19 +123,15 @@ function createMap(response) {
     }
   })
 
-  // d3.select("body")
-  // .append("a")
-  //         .html('<br>Source of data')
-  //         .attr("class","sources")
-  //         .attr("href", "https://www.kaggle.com/cjgdev/formula-1-race-data-19502017");
+
 
   // Create legend
   function legend(){
     var hLegend = 200;
-    var wLegend = 150;
-    var locLegend = [width - wLegend - 1, 60]
+    var wLegend = 130;
+    var locLegend = [width - wLegend - 10, 50]
     // Create outline for legend
-    var legendBox = svg.append("rect")
+    var legendBox = svg_map.append("rect")
                       .attr("x", locLegend[0])
                       .attr("y", locLegend[1])
                       .attr("width", wLegend)
@@ -149,7 +147,7 @@ function createMap(response) {
     // Creates element in legend for every element in colorArray
     for (let color of colorArray){
       var yLocCircle = locLegend[1] + hLegend - 15 - i/nColors*(hLegend-titleSpace);
-      svg.append("circle")
+      svg_map.append("circle")
           .attr("r", 7)
           .attr("cx", xLocCircle)
           .attr("cy", yLocCircle)
@@ -158,7 +156,7 @@ function createMap(response) {
           .attr("stroke-width", 1);
       // Text for 0 wins
       if (i === 0) {
-        svg.append("text")
+        svg_map.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -166,7 +164,7 @@ function createMap(response) {
       }
       // Exclude 0 from text at 1-9
       else if (i === 1) {
-        svg.append("text")
+        svg_map.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -174,7 +172,7 @@ function createMap(response) {
       }
       // normal text for most elements
       else if ((i + 1) < nColors) {
-        svg.append("text")
+        svg_map.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -182,13 +180,13 @@ function createMap(response) {
       }
       // Give last element different text, and create legendTitle
       else {
-        svg.append("text")
+        svg_map.append("text")
             .attr("class", "legendTitle")
             .attr("text-anchor", "middle")
             .attr("x", locLegend[0] + wLegend / 2)
             .attr("y", locLegend[1] + titleSpace / 2 + 4)
             .text("Race Wins");
-        svg.append("text")
+        svg_map.append("text")
             .attr("x", xLocCircle + 15)
             .attr("y", yLocCircle + 5)
             .attr("class", "legendText")
@@ -198,6 +196,9 @@ function createMap(response) {
     }
 }
   legend();
+
+  // Display bar chart Germany first
+  createBarChart(winners, 'DEU', maxWins);
 }
 
 // Create bar chart
@@ -222,17 +223,39 @@ function createBarChart(winners, countryID, maxWins) {
   var w = 800 - margin.left;
   var h = 645 - margin.top - margin.bottom;
 
-  // Remove previous chart and create new svg
-  d3.select(".barChart").remove();
-  var svg = d3.select("body").append("svg")
-                .attr("class", "barChart")
-                .attr("width", w + margin.left)
-                .attr("height", h + margin.top + margin.bottom)
-              .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  if (d3.select(".barChart")['_groups'][0][0] === null) {
+    var svg_chart = d3.select("body").append("svg")
+                  .attr("class", "barChart")
+                  .attr("width", w + margin.left)
+                  .attr("height", h + margin.top + margin.bottom)
+                .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    var yScale = d3.scaleLinear()
+            .domain([0, maxWins])
+            .range([h, 0]);
+
+    // Create y-axis
+    var yAxis = d3.axisLeft(yScale);
+    svg_chart.append("g")
+            .attr("class", "y-axis")
+            .call(yAxis);
+
+    // Add label to y-axis
+    svg_chart.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("class", "y-axis-label")
+      .attr("x", -(h / 2))
+      .attr("text-anchor", "middle")
+      .attr("y", - 35)
+      .text("Race Victories");
+  }
+  var svg_chart = d3.select(".barChart")
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   // Chart title
-  svg.append("text")
+  d3.select(".graphTitle").remove();
+  svg_chart.append("text")
       .attr("class", "graphTitle")
       .attr("x", 0)
       .attr("y", - 18)
@@ -256,10 +279,12 @@ function createBarChart(winners, countryID, maxWins) {
           .padding(0.1);
 
   // Create bars
-  var rects = svg.selectAll("rect")
+  d3.selectAll(".bar").remove();
+  var rects = svg_chart.selectAll("rect")
                 .data(nationalDriversNames)
                 .enter()
                 .append("rect")
+                .attr("class","bar")
                 .attr("x", function(d) {
                           return xScale(d);
                         })
@@ -272,24 +297,10 @@ function createBarChart(winners, countryID, maxWins) {
                 })
                 .attr("fill", "skyblue");
 
-  // Create y-axis
-  var yAxis = d3.axisLeft(yScale);
-  svg.append("g")
-          .attr("class", "y-axis")
-          .call(yAxis);
-
-  // Add label to y-axis
-  svg.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("class", "y-axis-label")
-    .attr("x", -(h / 2))
-    .attr("text-anchor", "middle")
-    .attr("y", - 35)
-    .text("Race Victories");
-
+  d3.select(".x-axis").remove();
   // Create x-axis
   var xAxis = d3.axisBottom(xScale);
-  svg.append("g")
+  svg_chart.append("g")
           .attr("class", "x-axis")
           .attr("transform", "translate(0," + h + ")")
           .call(xAxis)
@@ -300,9 +311,10 @@ function createBarChart(winners, countryID, maxWins) {
           .attr("transform", "rotate(-30)");
 
   // Tooltip for chart
+  d3.select(".tooltipGraph").remove();
   var tooltip = d3.select("body")
         .append("div")
-        .attr("class", "tooltip_graph")
+        .attr("class", "tooltipGraph")
         .style("visibility", "hidden");
 
   // Listen if mouse touches a bar, then takes appropiate action
@@ -316,7 +328,7 @@ function createBarChart(winners, countryID, maxWins) {
     tooltip.style("visibility", "visible")
           .html("<b><font size='+1'><font color='black'>"+ d +
               "</font></font><br>Total Victories: </b>" +
-              winners[d].victories + "<font size='-1'>" + tooltipText) + '</font>';
+              winners[d].victories + "<small>" + tooltipText) + '</font>';
   })
 
   // Stops displaying tooltip if mouse moves away, reset color of bars
@@ -330,4 +342,16 @@ function createBarChart(winners, countryID, maxWins) {
     tooltip.style("left", (d3.event.pageX + 10) + "px")
           .style("top", (d3.event.pageY) - 70 + "px");
   })
+}
+
+function addText() {
+  d3.select("body")
+    .append("p")
+          .html("The map shows the amount of F1 race victories by country. Hover over a country to get the precise amount of victories, <br>click on a country to see a bar chart detailing the victories per driver. If you hover over the bars of the chart you will see<br> the amount of victories the driver got per team. Note: from 1950 until 1960 the Indy 500 was officially part of the <br>F1 World Championship, though F1 drivers rarely took part in these races. These races are included in the dataset<br> and are the cause of the somewhat inflated US numbers<br>")
+    .append("p")
+          .html("Map and chart created by Timo Koster (10815716) for the Linked Views homework assignment for the Data Processing course.<br>")
+    .append("a")
+          .html('<br>Source of data')
+          .attr("class","sources")
+          .attr("href", "https://www.kaggle.com/cjgdev/formula-1-race-data-19502017");
 }
